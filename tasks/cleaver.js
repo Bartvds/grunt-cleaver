@@ -14,18 +14,19 @@ var path = require('path');
 module.exports = function (grunt) {
 
 	function compileCleaver(file, options, callback) {
-		var cleaver = new Cleaver(path.resolve(file.src));
+		//TODO inject file.dest and options into source (or pass to cleaver once it supporst these)
 
-		//TODO inject file.dest and options into source (or pass to cleaver)
-
+		//trick output directory
 		var cwd = process.cwd();
-		process.chdir(path.dirname(file.src));
-
 		var restore = function () {
 			process.chdir(cwd);
 		};
 
-		cleaver.run().then(function () {
+		var cleaver = new Cleaver(path.resolve(file.src));
+		process.chdir(path.dirname(file.src));
+
+		//running with cleavers
+		return cleaver.run().then(function () {
 			restore();
 			callback();
 		}, function (err) {
@@ -35,12 +36,13 @@ module.exports = function (grunt) {
 	}
 
 	grunt.registerMultiTask('cleaver', 'Run cleaver to build slideshows from markdown', function () {
-		var options = this.options({
-		});
-
+		var options = this.options({});
 		var done = this.async();
 		var files = [];
+
 		var fileCount = 0;
+		var success = 0;
+		var failed = 0;
 
 		//flatten list for sanity
 		grunt.util._.each(this.files, function (f) {
@@ -64,9 +66,6 @@ module.exports = function (grunt) {
 			done(false);
 			return;
 		}
-
-		var success = 0;
-		var failed = 0;
 
 		grunt.util.async.forEach(files, function (file, callback) {
 			compileCleaver(file, options, function (err) {
