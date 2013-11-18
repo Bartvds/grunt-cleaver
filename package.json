@@ -1,7 +1,7 @@
 {
   "name": "grunt-cleaver",
   "description": "Build cleaver slideshows from grunt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/Bartvds/grunt-cleaver",
   "author": {
     "name": "Bart van der Schoor",
@@ -35,7 +35,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "cleaver": "~0.4.2"
+    "cleaver": "~0.5.3"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.1.1",

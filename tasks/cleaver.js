@@ -17,13 +17,15 @@ module.exports = function (grunt) {
 		//TODO inject file.dest and options into source (or pass to cleaver once it supporst these)
 
 		//trick output directory
+		var src = path.resolve(file.src);
+
 		var cwd = process.cwd();
 		var restore = function () {
 			process.chdir(cwd);
 		};
+		process.chdir(path.dirname(src));
 
-		var cleaver = new Cleaver(path.resolve(file.src));
-		process.chdir(path.dirname(file.src));
+		var cleaver = new Cleaver(src);
 
 		//running with cleavers
 		return cleaver.run().then(function () {
@@ -56,7 +58,7 @@ module.exports = function (grunt) {
 				 if (!dest) {
 				 dest = filePath.replace(/.djs$/, '.js');
 				 }*/
-				files.push({src: filePath, /*dest: dest,*/ options: options});
+				files.push({src: filePath, options: options});
 			});
 		});
 
