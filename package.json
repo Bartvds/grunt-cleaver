@@ -1,7 +1,7 @@
 {
   "name": "grunt-cleaver",
   "description": "Build cleaver slideshows from grunt",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/Bartvds/grunt-cleaver",
   "author": {
     "name": "Bart van der Schoor",
@@ -45,6 +45,6 @@
     "grunt-continue": "0.0.1"
   },
   "peerDependencies": {
-    "grunt": "0.4.1"
+    "grunt": "~0.4.1"
   }
 }
