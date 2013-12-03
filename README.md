@@ -29,7 +29,7 @@ grunt.loadNpmTasks('grunt-cleaver');
 ```js
 grunt.initConfig({
   cleaver: {
-    build {
+    build: {
       options: {
          
       },
