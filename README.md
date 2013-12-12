@@ -49,3 +49,7 @@ grunt.initConfig({
 Contributions are very welcome, please create an Issue before doing something major.
 
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Bartvds/grunt-cleaver/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
