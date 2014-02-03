@@ -28,19 +28,20 @@ grunt.loadNpmTasks('grunt-cleaver');
 
 ```js
 grunt.initConfig({
-  cleaver: {
-    build: {
-      options: {
-         
-      },
-      src: ['./test/main.md', './test/intro.md']
-    }
-  }
-})
+	cleaver: {
+		build: {
+			options: {
+				
+			},
+			src: ['./test/main.md', './test/intro.md']
+		}
+	}
+});
 ```
 
 ## History
 
+* 0.3.0 - Updated cleaver to `~0.6.0`
 * 0.2.0 - Updated cleaver to `~0.5.3`
 * 0.1.0 - First release
 
