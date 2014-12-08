@@ -25,16 +25,21 @@ module.exports = function (grunt) {
 		};
 		process.chdir(path.dirname(src));
 
-		var cleaver = new Cleaver(src);
+        // Read Markdown and write the html file based on metadata or basename.
+        fs.readFile(src, 'utf-8', function (err, contents) {
+            var presentation = new Cleaver(contents, path.resolve(path.dirname(file)));
+            var promise = presentation.run();
 
-		//running with cleavers
-		return cleaver.run().then(function () {
-			restore();
-			callback();
-		}, function (err) {
-			restore();
-			callback(err);
-		});
+            promise.then(function (product) {
+                var outputFile = presentation.metadata.output || path.basename(src, '.md') + '-cleaver.html';
+                fs.writeFile(outputFile, product);
+                restore();
+                callback();
+            }).fail(function (err) {
+                restore();
+                callback(err);
+            });
+        });
 	}
 
 	grunt.registerMultiTask('cleaver', 'Run cleaver to build slideshows from markdown', function () {
